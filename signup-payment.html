@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone - Payment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .payment-method {
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        .payment-method:hover, .payment-method.selected {
+            border-color: #e50914;
+        }
+        .payment-icon {
+            width: 40px;
+            height: 25px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <header class="py-4 px-12 border-b border-gray-800">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" 
+             alt="Netflix Logo" class="h-8">
+    </header>
+
+    <main class="max-w-2xl mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <p class="text-gray-400 mb-2">STEP <span class="text-white">3</span> OF <span class="text-white">3</span></p>
+            <h1 class="text-3xl font-bold mb-4">Set up your payment</h1>
+            <p class="text-gray-400">Your membership starts as soon as you set up payment.</p>
+        </div>
+
+        <div class="bg-gray-900 rounded-lg p-6 mb-8">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-bold text-lg" id="plan-name">Standard</h3>
+                <p class="text-lg" id="plan-price">$15.49/month</p>
+            </div>
+            <p class="text-gray-400 text-sm mb-6">
+                No commitments. Cancel anytime.
+            </p>
+        </div>
+
+        <form id="payment-form" class="mb-8">
+            <h3 class="text-xl font-bold mb-4">Payment Method</h3>
+            
+            <div class="grid gap-4 mb-6">
+                <div class="payment-method selected rounded-lg p-4 cursor-pointer" data-method="credit">
+                    <div class="flex items-center">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visa/visa-original.svg" class="payment-icon mr-4">
+                        <span>Credit or Debit Card</span>
+                    </div>
+                </div>
+                <div class="payment-method rounded-lg p-4 cursor-pointer" data-method="paypal">
+                    <div class="flex items-center">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/paypal/paypal-original.svg" class="payment-icon mr-4">
+                        <span>PayPal</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="credit-card-form">
+                <div class="mb-4">
+                    <input type="text" placeholder="Card number" class="w-full bg-gray-700 bg-opacity-50 border border-gray-600 rounded px-4 py-3">
+                </div>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <input type="text" placeholder="Expiration date (MM/YY)" class="w-full bg-gray-700 bg-opacity-50 border border-gray-600 rounded px-4 py-3">
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Security code" class="w-full bg-gray-700 bg-opacity-50 border border-gray-600 rounded px-4 py-3">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <input type="text" placeholder="Name on card" class="w-full bg-gray-700 bg-opacity-50 border border-gray-600 rounded px-4 py-3">
+                </div>
+            </div>
+
+            <div class="flex items-center mb-6">
+                <input type="checkbox" id="save-payment" class="mr-2">
+                <label for="save-payment" class="text-sm">Save this payment method for faster checkout next time</label>
+            </div>
+
+            <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded font-medium">
+                Start Membership
+            </button>
+        </form>
+
+        <div class="text-center text-sm text-gray-400">
+            <p>By checking the box below, you agree to our <a href="#" class="text-blue-500 hover:underline">Terms of Use</a>, <a href="#" class="text-blue-500 hover:underline">Privacy Statement</a>, and that you are over 18.</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        // Set plan info from localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const plan = localStorage.getItem('selectedPlan');
+            const planNames = {
+                'basic': 'Basic',
+                'standard': 'Standard',
+                'premium': 'Premium'
+            };
+            const planPrices = {
+                'basic': '$9.99/month',
+                'standard': '$15.49/month',
+                'premium': '$19.99/month'
+            };
+            
+            document.getElementById('plan-name').textContent = planNames[plan];
+            document.getElementById('plan-price').textContent = planPrices[plan];
+        });
+
+        // Payment method selection
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', () => {
+                document.querySelectorAll('.payment-method').forEach(m => {
+                    m.classList.remove('selected');
+                });
+                method.classList.add('selected');
+            });
+        });
+    </script>
+</body>
+</html>
