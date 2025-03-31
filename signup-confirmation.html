@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone - Welcome</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        .plan-badge {
+            background-color: rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <header class="py-4 px-12">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" 
+             alt="Netflix Logo" class="h-8">
+    </header>
+
+    <main class="max-w-2xl mx-auto px-4 py-12 text-center">
+        <div class="checkmark bg-green-500 mb-8">
+            <i class="fas fa-check text-white text-4xl"></i>
+        </div>
+        
+        <h1 class="text-3xl font-bold mb-4">Welcome to Netflix!</h1>
+        <p class="text-xl text-gray-400 mb-8">
+            Your membership has been confirmed for 
+            <span class="text-white" id="confirmed-plan">Standard</span> plan.
+        </p>
+
+        <div class="bg-gray-900 rounded-lg p-6 mb-8 max-w-md mx-auto">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-gray-400">Account</span>
+                <span id="user-email" class="font-medium">user@example.com</span>
+            </div>
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-gray-400">Plan</span>
+                <span class="plan-badge px-3 py-1 rounded text-sm" id="plan-badge">Standard</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-400">Billing</span>
+                <span id="plan-price">$15.49/month</span>
+            </div>
+        </div>
+
+        <div class="mb-8">
+            <p class="text-gray-400 mb-4">
+                We've sent a confirmation email to <span id="confirmation-email" class="text-white">user@example.com</span>
+            </p>
+            <p class="text-sm text-gray-500">
+                Need help? <a href="#" class="text-blue-500 hover:underline">Contact us</a>
+            </p>
+        </div>
+
+        <a href="index.html" class="bg-red-600 hover:bg-red-700 text-white px-12 py-3 rounded font-medium inline-block">
+            Start Watching
+        </a>
+    </main>
+
+    <script>
+        // Set user info from localStorage
+        document.addEventListener('DOMContentLoaded', () => {
+            const email = localStorage.getItem('tempEmail');
+            const plan = localStorage.getItem('selectedPlan');
+            
+            const planNames = {
+                'basic': 'Basic',
+                'standard': 'Standard',
+                'premium': 'Premium'
+            };
+            const planPrices = {
+                'basic': '$9.99/month',
+                'standard': '$15.49/month',
+                'premium': '$19.99/month'
+            };
+
+            if (email) {
+                document.getElementById('user-email').textContent = email;
+                document.getElementById('confirmation-email').textContent = email;
+            }
+            if (plan) {
+                document.getElementById('confirmed-plan').textContent = planNames[plan];
+                document.getElementById('plan-badge').textContent = planNames[plan];
+                document.getElementById('plan-price').textContent = planPrices[plan];
+            }
+
+            // Clear temporary storage
+            localStorage.removeItem('tempEmail');
+            localStorage.removeItem('tempPassword');
+        });
+    </script>
+</body>
+</html>
