@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details | Netflix Clone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .movie-backdrop {
+            height: 70vh;
+            background-size: cover;
+            background-position: center;
+        }
+        .movie-info {
+            background: linear-gradient(to top, #141414 0%, transparent 100%);
+        }
+        .cast-scroll {
+            scrollbar-width: none;
+        }
+        .cast-scroll::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-[#141414] text-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 bg-gradient-to-b from-black to-transparent">
+        <div class="flex justify-between items-center px-12 py-4">
+            <div class="flex items-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" 
+                     alt="Netflix Logo" class="h-8">
+                <button class="mobile-menu-btn ml-4 md:hidden text-white">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <nav class="ml-8 hidden md:block desktop-menu">
+                    <ul class="flex space-x-6">
+                        <li><a href="index.html" class="hover:text-gray-300">Home</a></li>
+                        <li><a href="#" class="hover:text-gray-300">TV Shows</a></li>
+                        <li><a href="#" class="hover:text-gray-300">Movies</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="search.html" class="text-white"><i class="fas fa-search"></i></a>
+                <a href="login.html" class="bg-red-600 hover:bg-red-700 px-4 py-1 rounded text-sm font-medium">Sign In</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Movie Backdrop -->
+    <div class="movie-backdrop" 
+         style="background-image: url('https://images.pexels.com/photos/3062545/pexels-photo-3062545.jpeg')">
+    </div>
+
+    <!-- Movie Info Section -->
+    <section class="movie-info relative -mt-32 px-12 pb-12">
+        <div class="max-w-4xl">
+            <h1 class="text-4xl font-bold mb-4">Stranger Things</h1>
+            <div class="flex items-center space-x-4 mb-6">
+                <span class="text-green-500 font-medium">97% Match</span>
+                <span>2016</span>
+                <span class="border border-gray-400 px-1 text-xs">TV-14</span>
+                <span>3 Seasons</span>
+            </div>
+            <div class="flex space-x-4 mb-8">
+                <button class="bg-white text-black px-6 py-2 rounded flex items-center">
+                    <i class="fas fa-play mr-2"></i> Play
+                </button>
+                <button class="watchlist-btn bg-gray-600 bg-opacity-70 px-6 py-2 rounded flex items-center" data-movie-id="1">
+                    <i class="fas fa-plus mr-2"></i> My List
+                </button>
+            </div>
+            <p class="text-lg mb-6">
+                When a young boy vanishes, a small town uncovers a mystery involving secret experiments, 
+                terrifying supernatural forces and one strange little girl.
+            </p>
+            <div class="mb-8">
+                <p class="text-gray-400 mb-2">Starring: Millie Bobby Brown, Finn Wolfhard, Winona Ryder</p>
+                <p class="text-gray-400">Creators: The Duffer Brothers</p>
+            </div>
+        </div>
+
+        <!-- Cast Section -->
+        <div class="mb-12">
+            <h2 class="text-xl font-bold mb-4">Cast</h2>
+            <div class="flex space-x-4 overflow-x-auto cast-scroll pb-4">
+                <!-- Cast Cards -->
+                <div class="flex-shrink-0 w-32">
+                    <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg" 
+                         alt="Cast 1" class="rounded-full w-24 h-24 object-cover mb-2">
+                    <p class="text-center">Millie Bobby Brown</p>
+                </div>
+                <!-- Repeat for other cast members -->
+            </div>
+        </div>
+
+        <!-- More Like This Section -->
+        <div>
+            <h2 class="text-xl font-bold mb-4">More Like This</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Similar Movie Cards -->
+                <div class="movie-card">
+                    <img src="https://images.pexels.com/photos/3992943/pexels-photo-3992943.jpeg" 
+                         alt="Similar 1" class="rounded w-full h-48 object-cover">
+                </div>
+                <!-- Repeat for other similar movies -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="bg-black bg-opacity-80 py-8 px-12">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#"><i class="fab fa-facebook text-2xl"></i></a>
+                <a href="#"><i class="fab fa-instagram text-2xl"></i></a>
+                <a href="#"><i class="fab fa-twitter text-2xl"></i></a>
+                <a href="#"><i class="fab fa-youtube text-2xl"></i></a>
+            </div>
+            <p class="text-center text-gray-400 text-sm">
+                &copy; 2023 Netflix Clone. All rights reserved.
+            </p>
+        </div>
+    </footer>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden fixed inset-0 bg-black z-40 pt-20 px-6">
+        <ul class="space-y-4 text-xl">
+            <li><a href="index.html" class="block py-2 hover:text-red-600">Home</a></li>
+            <li><a href="#" class="block py-2 hover:text-red-600">TV Shows</a></li>
+            <li><a href="#" class="block py-2 hover:text-red-600">Movies</a></li>
+            <li><a href="#" class="block py-2 hover:text-red-600">New & Popular</a></li>
+            <li><a href="#" class="block py-2 hover:text-red-600">My List</a></li>
+        </ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
